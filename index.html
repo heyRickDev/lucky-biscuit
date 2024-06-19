@@ -14,21 +14,18 @@
   </head>
   <body>
     <main>
-      <div class="screen">
+      <div id="closed-biscuit-screen" class="screen">
         <h1>Qual é a sua sorte de hoje?</h1>
         <h2>Abra o biscoito e descubra!</h2>
-        <img src="assets/biscuit.png" alt="" />
+        <img src="assets/biscuit.png" id="closed-biscuit" alt="" />
       </div>
-      <div class="screen hide">
+      <div id="opened-biscuit-screen" class="screen hide">
         <h1>Aqui está a sua sorte de hoje:</h1>
         <div class="message">
-          <p>
-            Se alguém está tão cansado que não possa te dar um sorriso,
-            deixa-lhe o teu.
-          </p>
+          <p></p>
         </div>
         <img src="assets/opened-biscuit.png" id="opened-biscuit" alt="" />
-        <button>Abrir outro biscoito</button>
+        <button id="return-btn">Abrir outro biscoito</button>
       </div>
     </main>
     <script src="main.js"></script>

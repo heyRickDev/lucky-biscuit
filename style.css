@@ -64,6 +64,10 @@ button {
   padding: 1.6rem;
   border-radius: 0.4rem;
   font-weight: 700;
+  transition: all 0.3s ease-in;
+}
+button:hover {
+  background-color: #ff7300;
 }
 .message {
   padding: 1rem;
@@ -74,6 +78,10 @@ button {
 p {
   font-family: "Dancing Script", cursive;
   font-size: 2.4rem;
+}
+#closed-biscuit,
+button {
+  cursor: pointer;
 }
 #opened-biscuit {
   margin: 6rem auto;
