@@ -69,15 +69,37 @@ button {
 button:hover {
   background-color: #ff7300;
 }
-.message {
+.wrapper-divs {
+  position: relative;
+}
+.message-wrapper {
+  position: relative;
+  z-index: 2;
   padding: 1rem;
   background-color: #e4edf1;
   margin-top: 1.7rem;
-  box-shadow: 2px 2px 2px rgba(85, 85, 85, 0.5);
+  box-shadow: 0.3rem 0.3rem 0.3rem rgba(85, 85, 85, 0.5);
+  animation: appearMessage 1s ease-in-out forwards;
 }
-p {
+.author-wrapper {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  opacity: 0;
+  padding: 1.5rem 1rem 1rem;
+  background-color: #fdf5ad;
+  box-shadow: 0.2rem 0.2rem 0.2rem rgba(85, 85, 85, 0.5);
+}
+.message {
   font-family: "Dancing Script", cursive;
   font-size: 2.4rem;
+}
+.author {
+  font-size: 1.5rem;
+}
+#closed-biscuit:hover {
+  animation: shakeBiscuit 0.1s ease-in-out infinite;
 }
 #closed-biscuit,
 button {
@@ -95,5 +117,26 @@ button {
   }
   100% {
     background-position: 0 25%;
+  }
+}
+@keyframes appearMessage {
+  0% {
+    opacity: 0;
+    transform: translateY(15rem) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes shakeBiscuit {
+  0% {
+    transform: rotateZ(1deg) translate(0.1rem, 0.3rem);
+  }
+  50% {
+    transform: rotateZ(0) translate(0);
+  }
+  100% {
+    transform: rotateZ(1deg) translate(-0.2rem, 0.1rem);
   }
 }
