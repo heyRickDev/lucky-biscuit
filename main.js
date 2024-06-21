@@ -91,31 +91,61 @@ const randomMessage = [
     author: "Madre Teresa de Calcutá",
   },
 ]
-const paragraph = document.querySelector("p")
+const phrase = document.querySelector(".message")
+const authorPhrase = document.querySelector(".author")
+const sticker = document.querySelector(".author-wrapper")
 const initialBiscuit = document.querySelector("#closed-biscuit")
 const firstScreen = document.querySelector("#closed-biscuit-screen")
 const secondScreen = document.querySelector("#opened-biscuit-screen")
 const returnButton = document.querySelector("#return-btn")
-let randomNumber = Math.round(Math.random() * 10)
+const wrapperMessage = document.querySelector(".message-wrapper")
+
+const animationAuthorIn = [
+  { opacity: 0, transform: "translateY(0) rotateZ(0)" },
+  { opacity: 1, transform: "translateY(4rem) rotateZ(3deg)" },
+]
+const animationAuthorTimingIn = {
+  duration: 250,
+  delay: 500,
+  iterations: 1,
+  fill: "forwards",
+}
+const animationAuthorOut = [
+  { opacity: 1, transform: "translateY(4rem) rotateZ(3deg)" },
+  { opacity: 0, transform: "translateY(0) rotateZ(0)" },
+]
+const animationAuthorTimingOut = {
+  duration: 200,
+  delay: 500,
+  iterations: 1,
+  fill: "forwards",
+}
+let randomNumber = Math.round(Math.random() * 20)
 
 //event listeners
 initialBiscuit.addEventListener("click", openBiscuit)
 returnButton.addEventListener("click", toggleScreen)
+phrase.addEventListener("mouseenter", animationIn)
+phrase.addEventListener("mouseout", animationOut)
 
 //functions
 function generateNumber() {
-  randomNumber = Math.round(Math.random() * 10)
+  randomNumber = Math.round(Math.random() * 20)
 }
 function openBiscuit() {
   toggleScreen()
   generateNumber()
   console.log(randomNumber)
-  paragraph.innerHTML = `${randomMessage[randomNumber].phrase}`
+  phrase.innerHTML = `${randomMessage[randomNumber].phrase}`
+  authorPhrase.innerHTML = `${randomMessage[randomNumber].author}`
 }
 function toggleScreen() {
   firstScreen.classList.toggle("hide")
   secondScreen.classList.toggle("hide")
 }
-function returnToBegin() {
-  toggleScreen()
+function animationIn() {
+  sticker.animate(animationAuthorIn, animationAuthorTimingIn)
+}
+function animationOut() {
+  sticker.animate(animationAuthorOut, animationAuthorTimingOut)
 }
