@@ -1,4 +1,10 @@
 //variables
+let randomNumber = Math.round(Math.random() * 20)
+let randomIterations = Math.round(Math.random() * 20)
+let randomTimeout = Math.round(Math.random() * 5000)
+console.log(randomNumber)
+console.log(randomIterations)
+console.log(randomTimeout)
 const randomMessage = [
   {
     phrase:
@@ -91,6 +97,7 @@ const randomMessage = [
     author: "Madre Teresa de Calcutá",
   },
 ]
+
 const phrase = document.querySelector(".message")
 const authorPhrase = document.querySelector(".author")
 const sticker = document.querySelector(".author-wrapper")
@@ -99,6 +106,16 @@ const firstScreen = document.querySelector("#closed-biscuit-screen")
 const secondScreen = document.querySelector("#opened-biscuit-screen")
 const returnButton = document.querySelector("#return-btn")
 const wrapperMessage = document.querySelector(".message-wrapper")
+
+const shaking = [
+  { transform: "rotateZ(1deg) translate(0.1rem, 0.3rem)" },
+  { transform: "rotateZ(0) translate(0)" },
+  { transform: "rotateZ(1deg) translate(-0.2rem, 0.1rem)" },
+]
+const shakingTime = {
+  duration: 100,
+  iterations: randomIterations,
+}
 
 const animationAuthorIn = [
   { opacity: 0, transform: "translateY(0) rotateZ(0)" },
@@ -120,21 +137,26 @@ const animationAuthorTimingOut = {
   iterations: 1,
   fill: "forwards",
 }
-let randomNumber = Math.round(Math.random() * 20)
 
 //event listeners
 initialBiscuit.addEventListener("click", openBiscuit)
 returnButton.addEventListener("click", toggleScreen)
 phrase.addEventListener("mouseenter", animationIn)
 phrase.addEventListener("mouseout", animationOut)
+document.addEventListener("DOMContentLoaded", shakingFrenetically)
 
 //functions
-function generateNumber() {
+function generateNewMessage() {
   randomNumber = Math.round(Math.random() * 20)
 }
+function generateValueShaking() {
+  randomIterations = Math.round(Math.random() * 20)
+  randomTimeout = Math.round(Math.random() * 5000)
+}
+
 function openBiscuit() {
   toggleScreen()
-  generateNumber()
+  generateNewMessage()
   console.log(randomNumber)
   phrase.innerHTML = `${randomMessage[randomNumber].phrase}`
   authorPhrase.innerHTML = `${randomMessage[randomNumber].author}`
@@ -149,3 +171,12 @@ function animationIn() {
 function animationOut() {
   sticker.animate(animationAuthorOut, animationAuthorTimingOut)
 }
+function shakingFrenetically() {
+  const biscuitAnimation = initialBiscuit.animate(shaking, shakingTime)
+
+  biscuitAnimation.onfinish = function () {
+    setTimeout(shakingFrenetically, randomTimeout)
+    generateValueShaking()
+  }
+}
+shakingFrenetically()

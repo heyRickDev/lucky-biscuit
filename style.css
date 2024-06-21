@@ -98,9 +98,6 @@ button:hover {
 .author {
   font-size: 1.5rem;
 }
-#closed-biscuit:hover {
-  animation: shakeBiscuit 0.1s ease-in-out infinite;
-}
 #closed-biscuit,
 button {
   cursor: pointer;
@@ -127,16 +124,5 @@ button {
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
-  }
-}
-@keyframes shakeBiscuit {
-  0% {
-    transform: rotateZ(1deg) translate(0.1rem, 0.3rem);
-  }
-  50% {
-    transform: rotateZ(0) translate(0);
-  }
-  100% {
-    transform: rotateZ(1deg) translate(-0.2rem, 0.1rem);
   }
 }
